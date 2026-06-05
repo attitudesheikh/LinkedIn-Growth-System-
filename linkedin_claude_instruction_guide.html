@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Growth System – Claude Instruction Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c26;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #6c63ff;
+    --accent2: #00e5a0;
+    --accent3: #ff6b6b;
+    --text: #f0f0f5;
+    --muted: #8888a0;
+    --tag-bg: rgba(108,99,255,0.12);
+    --tag-border: rgba(108,99,255,0.3);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d0d18 0%, #111128 50%, #0a0f1e 100%);
+    border-bottom: 1px solid var(--border2);
+    padding: 64px 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: 80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: #a89fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero-badge::before { content: '⬡'; font-size: 10px; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #ffffff 30%, #a89fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* INSTRUCTIONS BOX */
+  .how-to-use {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--accent);
+    margin: 32px 48px;
+    border-radius: 10px;
+    padding: 24px 28px;
+  }
+  .how-to-use h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #a89fff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .step-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    background: var(--accent);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .step-text {
+    font-size: 13px;
+    color: #b0b0c8;
+    line-height: 1.5;
+  }
+  .step-text strong {
+    color: var(--text);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* LAYER SECTIONS */
+  .layer-section {
+    padding: 32px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .layer-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .layer-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .layer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .layer-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-left: 4px;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+
+  /* SKILL CARD */
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: default;
+  }
+  .skill-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-1px);
+  }
+  .skill-header {
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .skill-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 22px;
+    padding-top: 2px;
+  }
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+  .skill-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+  }
+  .skill-body {
+    padding: 14px 16px;
+  }
+  .skill-goal {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  /* PROMPT BOX */
+  .prompt-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .prompt-box {
+    background: #0d0d14;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 12px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: #c0c0d8;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+    max-height: 180px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: max-height 0.3s ease;
+  }
+  .prompt-box.expanded {
+    max-height: none;
+  }
+  .prompt-box::after {
+    content: 'click to expand';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 14px 8px;
+    background: linear-gradient(to bottom, transparent, #0d0d14 70%);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: #6666a0;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .prompt-box.expanded::after {
+    content: '';
+    background: none;
+    padding: 0;
+  }
+
+  .prompt-placeholder {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* COPY BTN */
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 5px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s;
+  }
+  .copy-btn:hover { opacity: 0.7; }
+  .copy-btn::before { content: '⎘'; font-size: 13px; }
+
+  /* TIPS */
+  .tip-box {
+    margin-top: 10px;
+    background: rgba(0,229,160,0.05);
+    border: 1px solid rgba(0,229,160,0.15);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 11.5px;
+    color: #80e8c0;
+    line-height: 1.5;
+  }
+  .tip-box::before {
+    content: '◈ Pro tip: ';
+    font-weight: 600;
+    color: var(--accent2);
+  }
+
+  /* LAYER COLOR ACCENTS */
+  .l1 { --layer-color: #6c63ff; }
+  .l2 { --layer-color: #ff9f43; }
+  .l3 { --layer-color: #00e5a0; }
+  .l4 { --layer-color: #ff6b6b; }
+  .l5 { --layer-color: #54a0ff; }
+  .l6 { --layer-color: #e056fd; }
+
+  .layer-dot.l1 { background: #6c63ff; box-shadow: 0 0 8px rgba(108,99,255,0.6); }
+  .layer-dot.l2 { background: #ff9f43; box-shadow: 0 0 8px rgba(255,159,67,0.6); }
+  .layer-dot.l3 { background: #00e5a0; box-shadow: 0 0 8px rgba(0,229,160,0.6); }
+  .layer-dot.l4 { background: #ff6b6b; box-shadow: 0 0 8px rgba(255,107,107,0.6); }
+  .layer-dot.l5 { background: #54a0ff; box-shadow: 0 0 8px rgba(84,160,255,0.6); }
+  .layer-dot.l6 { background: #e056fd; box-shadow: 0 0 8px rgba(224,86,253,0.6); }
+
+  .skill-card.l1 { border-top: 2px solid #6c63ff; }
+  .skill-card.l2 { border-top: 2px solid #ff9f43; }
+  .skill-card.l3 { border-top: 2px solid #00e5a0; }
+  .skill-card.l4 { border-top: 2px solid #ff6b6b; }
+  .skill-card.l5 { border-top: 2px solid #54a0ff; }
+  .skill-card.l6 { border-top: 2px solid #e056fd; }
+
+  .skill-tag.l1 { background: rgba(108,99,255,0.12); color: #a89fff; border: 1px solid rgba(108,99,255,0.25); }
+  .skill-tag.l2 { background: rgba(255,159,67,0.12); color: #ffcc88; border: 1px solid rgba(255,159,67,0.25); }
+  .skill-tag.l3 { background: rgba(0,229,160,0.10); color: #5ef5c2; border: 1px solid rgba(0,229,160,0.25); }
+  .skill-tag.l4 { background: rgba(255,107,107,0.12); color: #ffaaaa; border: 1px solid rgba(255,107,107,0.25); }
+  .skill-tag.l5 { background: rgba(84,160,255,0.12); color: #88c0ff; border: 1px solid rgba(84,160,255,0.25); }
+  .skill-tag.l6 { background: rgba(224,86,253,0.12); color: #f0aaff; border: 1px solid rgba(224,86,253,0.25); }
+
+  /* DAILY ROUTINE */
+  .routine-section {
+    padding: 32px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .routine-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .routine-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .routine-table th {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+  .routine-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: #c8c8e0;
+    vertical-align: top;
+  }
+  .routine-table tr:last-child td { border-bottom: none; }
+  .time-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    background: var(--tag-bg);
+    color: #a89fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .skill-ref {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    opacity: 0.7;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 48px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .hero, .how-to-use, .layer-section, .routine-section, .footer {
+      padding-left: 20px; padding-right: 20px;
+    }
+    .how-to-use { margin: 20px; }
+    .hero h1 { font-size: 28px; }
+    .hero-stats { gap: 20px; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">LinkedIn Growth System</div>
+  <h1>Claude Instruction Guide<br>for LinkedIn Growth</h1>
+  <p class="hero-sub">31 ready-to-paste Claude prompts across 6 layers — from market research to client conversion. Copy any prompt, fill in the placeholders, and run it in Claude.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-num">31</span><span class="hero-stat-label">Claude Skills</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">6</span><span class="hero-stat-label">System Layers</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">60</span><span class="hero-stat-label">Min/Day Routine</span></div>
+  </div>
+</div>
+
+<!-- HOW TO USE -->
+<div class="how-to-use">
+  <h2>How to use this guide</h2>
+  <div class="steps-grid">
+    <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Find your starting layer</strong>New to LinkedIn → start Layer 1. Have positioning → start Layer 3.</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Copy the prompt</strong>Click "Copy prompt" under any skill. Paste directly into Claude.</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Replace placeholders</strong>Every [BRACKETED] item must be filled with your specific details.</div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Feed outputs forward</strong>Layer 1 outputs power Layer 2. Layer 2 powers Layer 3. Work top-down.</div></div>
+    <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>Save your outputs</strong>Keep a folder per skill. Your outputs become inputs for the next skill.</div></div>
+  </div>
+</div>
+
+<!-- LAYER 1 -->
+<div class="layer-section">
+  <div class="layer-header">
+    <div class="layer-dot l1"></div>
+    <div>
+      <div class="layer-title">Layer 1</div>
+      <div class="layer-name">Market Intelligence</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card l1">
+      <div class="skill-header">
+        <span class="skill-num">01</span>
+        <span class="skill-name">Trend Radar</span>
+        <span class="skill-tag l1">Every Monday</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Spot emerging conversations before they peak. Feed output into Skills #9 or #12.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn market intelligence analyst.
+
+My niche: [YOUR NICHE / INDUSTRY]
+My ICP (Ideal Customer Profile): [WHO YOU SERVE]
+
+Task: Identify the top 10 emerging trends in my niche RIGHT NOW.
+
+For each trend provide:
+1. Trend name & one-line description
+2. Why it's gaining traction (3 bullet points)
+3. The underlying fear or desire driving it
+4. 3 LinkedIn post angles I can use this week
+5. Keywords & hashtags to use
+
+Format as a structured report I can scan in 2 minutes.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Save trend outputs in a running doc. After 4 weeks you'll see patterns — recurring pain points = your best content pillars.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l1">
+      <div class="skill-header">
+        <span class="skill-num">02</span>
+        <span class="skill-name">Competitor Analysis</span>
+        <span class="skill-tag l1">Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Reverse-engineer what's working for top voices. Find the white space they don't cover.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a competitive intelligence strategist for LinkedIn.
+
+My competitor / industry leader: [NAME OR PROFILE URL]
+My niche: [YOUR NICHE]
+
+Analyze this creator's LinkedIn presence and produce:
+1. Content pillars they consistently post about (top 5)
+2. Their hook formulas - identify patterns in their best-performing posts
+3. Engagement triggers they use (controversy, data, stories, how-tos)
+4. Gaps in their content - what topics do they avoid or undercover?
+5. Their positioning statement (what makes them 'the go-to' person)
+6. 5 content ideas I can create that would outperform their approach
+
+Be brutally honest. I want to beat them, not copy them.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Don't copy competitors — study them to find the white space where you can own a unique angle.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l1">
+      <div class="skill-header">
+        <span class="skill-num">03</span>
+        <span class="skill-name">Topic Research</span>
+        <span class="skill-tag l1">Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Generate 60 days of content ideas across 6 categories in one session.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a content strategist specializing in LinkedIn growth.
+
+My industry: [INDUSTRY]
+My role/title: [YOUR ROLE]
+My audience: [WHO FOLLOWS YOU / WHO YOU WANT TO ATTRACT]
+My business goal: [LEADS / BRAND / AUTHORITY / SALES]
+
+Generate 60 LinkedIn post topics organized into 6 content categories:
+• Pain Points (problems they face daily)
+• Mistakes & Myths (common misconceptions)
+• How-To & Frameworks (actionable guidance)
+• Stories & Case Studies (proof-based content)
+• Contrarian Takes (challenge conventional wisdom)
+• Industry Insights (trends, data, predictions)
+
+For each topic include: title, format recommendation (text/carousel/story), estimated engagement potential (High/Med/Low).</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Pain point posts consistently outperform motivational content 3:1 on LinkedIn. Weight your topic bank accordingly.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l1">
+      <div class="skill-header">
+        <span class="skill-num">04</span>
+        <span class="skill-name">Audience Insights</span>
+        <span class="skill-tag l1">Every 6 months</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build a deep psychological profile so every post feels personally written for your ICP.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a behavioral psychologist and audience researcher.
+
+My target audience on LinkedIn:
+- Job title(s): [e.g. Founder, VP Sales, Marketing Director]
+- Industry: [INDUSTRY]
+- Company size: [SMB / Mid-market / Enterprise]
+- Career stage: [Early / Mid / Senior / Executive]
+
+Create a comprehensive audience insight report covering:
+1. Top 5 daily frustrations (professional)
+2. Top 5 secret ambitions they rarely admit
+3. Biggest fears (career, financial, social)
+4. Language patterns - exact phrases they use when venting
+5. What they brag about when things go well
+6. What makes them stop scrolling on LinkedIn
+7. What kind of content makes them click 'Follow'
+8. Their dream transformation (where they want to be in 12 months)
+
+Write this as if you've interviewed 100 of them. Make it visceral and specific.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">The most powerful posts use the exact words your audience uses in their head at 2am. This skill extracts those words.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYER 2 -->
+<div class="layer-section">
+  <div class="layer-header">
+    <div class="layer-dot l2"></div>
+    <div>
+      <div class="layer-title">Layer 2</div>
+      <div class="layer-name">Positioning & Strategy</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card l2">
+      <div class="skill-header">
+        <span class="skill-num">05</span>
+        <span class="skill-name">ICP Builder</span>
+        <span class="skill-tag l2">Setup + Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Create a crystal-clear ICP document that filters your content, DMs, and offers.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a B2B positioning strategist.
+
+My product/service: [WHAT YOU SELL]
+Current clients (describe 2-3 best ones): [BRIEF DESCRIPTIONS]
+Revenue target: [MONTHLY / ANNUAL GOAL]
+
+Build my complete ICP profile including:
+1. Demographic snapshot (title, company size, industry, geography)
+2. Psychographic profile (values, identity, what they read/watch)
+3. Trigger events (what makes them need me RIGHT NOW)
+4. Decision-making process (who else is involved, timeline, budget signals)
+5. Objections they raise (top 5, with my ideal reframes)
+6. Where they hang out on LinkedIn (groups, hashtags, creators they follow)
+7. The ONE sentence that makes them DM me immediately
+
+Then write a 1-page ICP summary card I can reference daily.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">If your ICP is "anyone who needs your service" — you have no ICP. Get uncomfortably specific. Riches are in niches.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l2">
+      <div class="skill-header">
+        <span class="skill-num">06</span>
+        <span class="skill-name">Offer Positioning</span>
+        <span class="skill-tag l2">New offers</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Craft positioning language that makes your offer feel inevitable for your ICP.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a conversion copywriter specializing in B2B offers.
+
+My offer: [DESCRIBE YOUR SERVICE/PRODUCT IN PLAIN ENGLISH]
+My ICP: [PASTE FROM SKILL #5 OR DESCRIBE]
+Main competitors/alternatives: [WHAT THEY USE INSTEAD]
+My unique mechanism: [WHAT MAKES MY APPROACH DIFFERENT]
+
+Create 5 different positioning statements for my offer, each targeting a different angle:
+1. Outcome-focused (lead with the transformation)
+2. Problem-focused (lead with the pain I eliminate)
+3. Identity-focused (lead with who they become)
+4. Speed-focused (lead with time-to-result)
+5. Anti-competitor (lead with what I do that others don't)
+
+For each: write a 1-sentence version and a 3-sentence expanded version.
+Then recommend which ONE to lead with on LinkedIn and why.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Your positioning is wrong if it could describe 10 other people. Add specificity until it could only describe you.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l2">
+      <div class="skill-header">
+        <span class="skill-num">07</span>
+        <span class="skill-name">Personal Brand Framework</span>
+        <span class="skill-tag l2">Initial setup</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Define your 3 content pillars, brand voice, and signature perspective.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a personal branding strategist for LinkedIn thought leaders.
+
+My background: [2-3 sentences about your career/expertise]
+My offer/business: [WHAT YOU DO]
+My personality: [How would close friends describe you?]
+Values I want to be known for: [LIST 3-5]
+
+Design my Personal Brand Framework:
+1. My 3 Content Pillars (each with name, what it covers, why it matters to my ICP)
+2. My Brand Voice Guide (tone descriptors, words I use, words I avoid)
+3. My Signature Perspective - the ONE contrarian or unique belief I'm known for
+4. My Origin Story (2-paragraph version for LinkedIn About section)
+5. My content ratio recommendation (% per pillar per week)
+6. 3 recurring content formats that fit my personality
+
+Make the pillars feel cohesive and unmistakably mine.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">The most-followed LinkedIn creators are known for ONE strong idea, not many good ones. What's yours?</div>
+      </div>
+    </div>
+
+    <div class="skill-card l2">
+      <div class="skill-header">
+        <span class="skill-num">08</span>
+        <span class="skill-name">Authority Mapping</span>
+        <span class="skill-tag l2">90-day cycles</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Identify and claim the specific authority territory that is uniquely yours.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a thought leadership strategist.
+
+My expertise: [YOUR SKILLS, EXPERIENCE, CREDENTIALS]
+My niche: [SPECIFIC MARKET]
+Current perception (how people see me now): [HONEST ASSESSMENT]
+Desired authority position: [HOW I WANT TO BE SEEN IN 12 MONTHS]
+
+Create my Authority Map:
+1. My 'owned territory' - the specific intersection of topics I can own
+2. Credibility assets I already have (underused proof points)
+3. Authority gaps to close (what I need to demonstrate)
+4. 90-day authority-building content roadmap
+5. Strategic relationships to cultivate (types of people, not names)
+6. The 3 'signature ideas' I should be relentlessly associated with
+7. Metrics to track authority growth on LinkedIn</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Authority is claimed, not given. Decide what you want to own, then post about it relentlessly for 90 days.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l2">
+      <div class="skill-header">
+        <span class="skill-num">09</span>
+        <span class="skill-name">Content Angles</span>
+        <span class="skill-tag l2">Monthly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Transform one idea into 20 unique post angles your audience hasn't seen before.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn content strategist who specializes in angle generation.
+
+Topic: [YOUR CORE TOPIC OR IDEA]
+My audience: [WHO WILL READ THIS]
+My unique perspective: [YOUR POV ON THIS TOPIC]
+
+Generate 20 unique angles for this topic, covering:
+• The counterintuitive take
+• The personal story angle
+• The data/stat angle
+• The 'mistake I made' angle
+• The 'unpopular opinion' angle
+• The 'how I would do it differently' angle
+• The 'what nobody talks about' angle
+• The framework/system angle
+• The prediction angle
+• The 'what changed' angle
+
+For each angle: write the hook sentence and 1 paragraph summary.
+Rate each 1-10 for virality potential with my specific audience.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">The same insight with a different angle can outperform itself 10x. Angles are your most underrated lever.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l2">
+      <div class="skill-header">
+        <span class="skill-num">10</span>
+        <span class="skill-name">Messaging Architecture</span>
+        <span class="skill-tag l2">Setup + Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build unified messaging for your profile, content, and DMs from one session.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a messaging strategist for B2B service businesses.
+
+My offer: [WHAT YOU SELL]
+My ICP: [IDEAL CUSTOMER]
+My differentiator: [WHAT MAKES ME DIFFERENT]
+Current LinkedIn headline: [PASTE YOUR CURRENT HEADLINE]
+
+Build my complete Messaging Architecture:
+1. Power Headline (3 variations for LinkedIn - test these)
+2. About Section (500 words, story-driven, CTA at end)
+3. Featured Section copy (what to put in your 3 featured spots)
+4. Core message matrix: Problem → Agitate → Solution → Result
+5. Signature sign-off for posts (builds pattern recognition)
+6. DM opener templates (3 variations: cold, warm, referral)
+7. 5 power phrases to use throughout all content
+
+All messaging should feel like one cohesive voice.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Your LinkedIn headline is a billboard. You have 3 seconds and 220 characters. Use them to describe who you help and what result they get.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYER 3 -->
+<div class="layer-section">
+  <div class="layer-header">
+    <div class="layer-dot l3"></div>
+    <div>
+      <div class="layer-title">Layer 3</div>
+      <div class="layer-name">Content Creation</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">11</span>
+        <span class="skill-name">Ghostwriter</span>
+        <span class="skill-tag l3">Setup + Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Clone your voice so Claude writes posts that sound exactly like you.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a professional ghostwriter for LinkedIn thought leaders.
+
+Here are 5 LinkedIn posts I've written (my best-performing ones):
+[PASTE 5 OF YOUR POSTS HERE]
+
+Analyze my writing and create my complete Voice Profile:
+1. Sentence structure patterns (short punchy? Long flowing? Mix?)
+2. Vocabulary level and signature words I repeat
+3. How I open posts (hooks style)
+4. How I close posts (CTA style)
+5. Tone markers (casual? Professional? Vulnerable? Authoritative?)
+6. My formatting style (bullets, white space, emojis?)
+7. What I never say or do in writing
+
+Then write 3 new posts on [YOUR TOPIC] that perfectly match my voice.
+I should not be able to tell the difference from my own writing.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Feed Claude more examples = better voice matching. Update every 3 months as your voice evolves.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">12</span>
+        <span class="skill-name">Post Writer</span>
+        <span class="skill-tag l3">Every Post</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Generate fully formatted, ready-to-publish LinkedIn posts in minutes.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are an expert LinkedIn post writer with a track record of viral content.
+
+Topic: [YOUR TOPIC]
+Angle: [FROM SKILL #9 OR YOUR OWN]
+Format: [TEXT / LIST / STORY / FRAMEWORK / OPINION]
+Target audience: [WHO YOU'RE WRITING FOR]
+CTA goal: [FOLLOW / COMMENT / DM / CLICK LINK]
+My brand voice: [PASTE FROM SKILL #11 OR DESCRIBE IN 3 WORDS]
+
+Write a complete LinkedIn post using this structure:
+LINE 1: Powerful hook (interrupts the scroll)
+LINE 2: Empty line (creates curiosity gap)
+BODY: Deliver on the hook promise (200-400 words)
+CLOSE: One clear CTA
+
+Rules: No corporate jargon. No filler sentences. Every line must earn its place.
+Write 2 versions: one longer (400 words) and one punchy (150 words).</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Post consistency beats post perfection. A good post published beats a great post in drafts.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">13</span>
+        <span class="skill-name">Hook Generator</span>
+        <span class="skill-tag l3">Before Every Post</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Generate 20 tested hook formulas for any post topic.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn hook specialist. Your only job is writing opening lines that stop the scroll and create an irresistible urge to read more.
+
+Topic: [YOUR POST TOPIC]
+Audience: [WHO'S READING]
+Emotion to trigger: [CURIOSITY / FEAR / EXCITEMENT / OUTRAGE / HOPE]
+
+Generate 20 hook variations using these proven frameworks:
+• Contrarian: 'Everyone says X. They're wrong.'
+• Number: 'X things nobody tells you about [topic]'
+• Mistake: 'I [made mistake]. Here's what I learned.'
+• Prediction: 'In 12 months, [bold prediction]'
+• Question: Ask something your audience lies awake thinking about
+• Story opener: Start mid-action
+• Stat: Lead with a surprising number
+• Callout: Directly address your ICP
+
+Rate each hook 1-10 for pattern-interruption potential.
+Give me the top 5 with a brief reason why they work.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">80% of your post's performance is determined by the first line. Spend 20% of your writing time on hooks alone.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">14</span>
+        <span class="skill-name">Carousel Builder</span>
+        <span class="skill-tag l3">2x per month</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Create slide-by-slide carousel scripts that generate saves and shares.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn carousel content specialist.
+
+Topic: [YOUR CAROUSEL TOPIC]
+Goal: [EDUCATE / GENERATE LEADS / BUILD AUTHORITY / DRIVE PROFILE VISITS]
+Number of slides: [8-12 recommended]
+Audience: [WHO'S READING]
+
+Create a complete carousel script:
+SLIDE 1 (Cover): Bold headline that promises a transformation
+SLIDE 2: Set up the problem/context
+SLIDES 3-10: One insight per slide (short headline + 2-line explanation)
+SLIDE 11: The big reveal / summary / framework name
+SLIDE 12 (CTA): Clear next step with reason to act now
+
+For each slide provide:
+• Headline (max 8 words)
+• Body copy (max 30 words)
+• Visual suggestion (icon, chart, layout idea)
+
+Also suggest: color scheme, font pairing, and overall design mood.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Carousels get 3x more reach than text posts because they generate dwell time — LinkedIn's algorithm rewards it.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">15</span>
+        <span class="skill-name">Story Creator</span>
+        <span class="skill-tag l3">1x per week</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Turn your experiences into magnetic stories that build deep trust.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a narrative strategist specializing in personal brand storytelling.
+
+My story: [DESCRIBE A KEY EXPERIENCE, LESSON, OR TURNING POINT]
+The lesson/insight I want to share: [WHAT SHOULD THEY TAKE AWAY]
+My audience's parallel situation: [HOW IS THIS RELEVANT TO THEM]
+
+Transform this into a LinkedIn story using the Empathy Arc:
+1. BEFORE: Who were you / what was the situation? (2-3 sentences, present tense)
+2. MOMENT: What was the exact moment everything changed? (1-2 sentences, visceral detail)
+3. STRUGGLE: What did you try? What failed? What cost you? (3-4 sentences)
+4. SHIFT: What insight, person, or event changed your perspective? (2-3 sentences)
+5. AFTER: What did you become / achieve / understand? (2-3 sentences)
+6. BRIDGE: Connect your story to their situation - 'If you're where I was...'
+7. CTA: One action step they can take today
+
+Tone: Real, vulnerable, specific. No corporate polish. Make them feel it.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">People don't follow experts. They follow humans who happen to be experts. Stories are the bridge.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">16</span>
+        <span class="skill-name">Engagement Post Builder</span>
+        <span class="skill-tag l3">2x per week</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build posts engineered to generate comments, debates, and algorithmic reach.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are an engagement optimization specialist for LinkedIn.
+
+My topic: [TOPIC]
+My audience: [WHO COMMENTS ON YOUR POSTS]
+Desired engagement type: [COMMENTS / POLL / DEBATE / SAVES]
+
+Create 5 high-engagement post variations:
+1. POLL POST: Controversial question + 4 options (create curiosity with the options)
+2. DEBATE POST: Strong opinion that splits the room + invitation to disagree
+3. QUESTION POST: Ask one question your audience can answer in 2 sentences
+4. PREDICTION POST: Bold prediction + ask for their take
+5. SAVE-WORTHY POST: A resource, checklist, or framework they'll want to keep
+
+For each: write the full post + suggest the exact CTA wording.
+Engagement goal: minimum 20 comments per post.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Comments in the first 60 minutes signal quality to the algorithm. Post when your audience is most active and be ready to respond.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">17</span>
+        <span class="skill-name">Comment Generator</span>
+        <span class="skill-tag l3">Daily routine</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Leave value-adding comments that grow your audience from others' posts.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn visibility strategist who uses comments as a growth tool.
+
+The post I'm commenting on: [PASTE THE POST]
+The original poster: [THEIR NAME AND WHAT THEY DO]
+My goal: [BUILD RELATIONSHIP / ADD VISIBILITY / DEMONSTRATE EXPERTISE]
+My POV on this topic: [YOUR GENUINE TAKE]
+
+Write 5 comment options ranging from:
+1. SHORT ADD (1-2 sentences, adds a specific insight)
+2. AGREEMENT + EXTEND (validate then add new dimension)
+3. RESPECTFUL CHALLENGE (polite pushback with reasoning)
+4. PERSONAL STORY (relate with 2-sentence experience)
+5. EXPERT REFRAME (reposition the topic from your unique lens)
+
+Rules: No sycophantic openers ('Great post!'). Add real value.
+Each comment should make readers want to click my profile.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">One great comment on a 100K-view post can bring 500+ profile views overnight. This is the fastest free growth hack.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l3">
+      <div class="skill-header">
+        <span class="skill-num">18</span>
+        <span class="skill-name">Weekly Content Planner</span>
+        <span class="skill-tag l3">Every Sunday</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Plan a full week of LinkedIn content in under 10 minutes.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn content calendar strategist.
+
+My 3 content pillars: [PILLAR 1], [PILLAR 2], [PILLAR 3]
+My weekly post goal: [3 / 5 / 7 posts]
+This week's theme or focus: [OPTIONAL: LAUNCH / TOPIC / CAMPAIGN]
+My business goal this week: [AWARENESS / LEADS / CONVERSIONS]
+
+Build my complete weekly content plan:
+Monday: [FORMAT] - [TOPIC] - [CTA] - [HOOK IDEA]
+Tuesday: [FORMAT] - [TOPIC] - [CTA] - [HOOK IDEA]
+Wednesday: [FORMAT] - [TOPIC] - [CTA] - [HOOK IDEA]
+Thursday: [FORMAT] - [TOPIC] - [CTA] - [HOOK IDEA]
+Friday: [FORMAT] - [TOPIC] - [CTA] - [HOOK IDEA]
+
+Week arc: Mon (attention) → Tue (value) → Wed (engagement) → Thu (authority) → Fri (story/human)
+
+Also include: best posting times for my audience, hashtag recommendations.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Batch content creation is 5x more efficient than writing posts one at a time. One Sunday session = an entire week of content.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYER 4 -->
+<div class="layer-section">
+  <div class="layer-header">
+    <div class="layer-dot l4"></div>
+    <div>
+      <div class="layer-title">Layer 4</div>
+      <div class="layer-name">Lead Magnets & Funnels</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card l4">
+      <div class="skill-header">
+        <span class="skill-num">19</span>
+        <span class="skill-name">Lead Magnet Creator</span>
+        <span class="skill-tag l4">Initial setup</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build an irresistible lead magnet your ICP will trade their email for.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a lead magnet strategist for B2B service businesses.
+
+My offer: [WHAT YOU SELL]
+My ICP: [IDEAL CUSTOMER PROFILE]
+Their #1 problem right now: [SPECIFIC PAIN POINT]
+My unique solution approach: [HOW YOU SOLVE IT]
+
+Design my lead magnet from scratch:
+1. Lead magnet type recommendation (guide, checklist, template, mini-course, audit, tool)
+2. Title (3 options with power words)
+3. Subtitle (clarifies who it's for and what result they get)
+4. Full table of contents / section breakdown
+5. Key insight for each section (so it delivers real value)
+6. The 'missing piece' it leaves out (creates desire for your paid offer)
+7. CTA at the end pointing to your discovery call / offer
+
+Target length: [10-page guide / 1-page checklist / 3-email sequence]
+Make it so good people share it. Make it leave them wanting more.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Your lead magnet should solve one specific problem completely. It builds trust faster than 6 months of posting alone.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l4">
+      <div class="skill-header">
+        <span class="skill-num">20</span>
+        <span class="skill-name">Lead Magnet Ideation</span>
+        <span class="skill-tag l4">Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Generate 20 lead magnet ideas you can create in under 2 hours each.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a conversion rate optimizer specializing in lead generation assets.
+
+My niche: [YOUR NICHE]
+My audience role: [JOB TITLE / AUDIENCE TYPE]
+My offer: [WHAT YOU ULTIMATELY SELL]
+Formats I can create easily: [DOCS / SLIDES / VIDEO / SPREADSHEET / FIGMA]
+
+Generate 20 lead magnet ideas organized by type:
+• TOOLS (calculators, templates, trackers) - 5 ideas
+• KNOWLEDGE (guides, checklists, frameworks) - 5 ideas
+• ANALYSIS (audits, scorecards, assessments) - 5 ideas
+• QUICK WINS (swipe files, scripts, prompts) - 5 ideas
+
+For each idea: title, format, time to create, estimated opt-in conversion rate (Low/Med/High).
+Star the top 3 that would generate the most qualified leads for my offer.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">The best lead magnets are tools, not documents. An ROI calculator or self-audit outconverts a 20-page guide every time.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l4">
+      <div class="skill-header">
+        <span class="skill-num">21</span>
+        <span class="skill-name">Landing Page Copy</span>
+        <span class="skill-tag l4">Per lead magnet</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Write a high-converting landing page that converts 35%+ of visitors into email subscribers.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a direct response copywriter specializing in lead generation landing pages.
+
+Lead magnet: [TITLE AND BRIEF DESCRIPTION]
+ICP: [WHO IT'S FOR]
+Main promise: [THE ONE TRANSFORMATION IT DELIVERS]
+Opt-in offer: [FREE IN EXCHANGE FOR EMAIL]
+
+Write complete landing page copy:
+HEADLINE: Outcome-focused, specific, urgent (10 words max)
+SUBHEADLINE: Clarify who it's for + amplify the promise (20 words max)
+BULLETS: 5 power bullets using 'so you can' structure
+SOCIAL PROOF: Template for 2 testimonials (I'll fill in the names)
+OBJECTION HANDLER: Address the 'is this really free?' concern
+CTA BUTTON: 3 options (not 'Submit' - something action-oriented)
+BELOW FOLD: FAQ section (5 questions/answers)
+
+Optimized for: Fast load, mobile-first, no navigation distractions.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Remove every element that isn't helping the visitor say yes. Navigation menus, unrelated links, and too much copy all kill conversions.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l4">
+      <div class="skill-header">
+        <span class="skill-num">22</span>
+        <span class="skill-name">CTA Builder</span>
+        <span class="skill-tag l4">Setup + Monthly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build a library of 30 CTAs for posts, profiles, emails, and DMs.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a conversion copywriter specializing in non-salesy CTAs.
+
+My offer: [WHAT YOU WANT THEM TO DO NEXT]
+My audience's current awareness level: [COLD / WARM / HOT]
+The post/content this CTA will follow: [BRIEF DESCRIPTION]
+
+Write 30 CTA variations organized by goal:
+FOLLOW CTAs (5): Get new followers
+COMMENT CTAs (5): Drive engagement
+DM CTAs (5): Invite direct conversations
+LEAD MAGNET CTAs (5): Drive opt-ins
+DISCOVERY CALL CTAs (5): Book sales conversations
+PROFILE VISIT CTAs (5): Drive profile traffic
+
+Rules: Each CTA must:
+- Give a reason to act NOW
+- Remove friction (make it feel easy)
+- Match the post's tone
+- Never feel like a hard sell</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Match CTA aggressiveness to content temperature — cold content, soft CTA. The worst CTA is no CTA at all.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l4">
+      <div class="skill-header">
+        <span class="skill-num">23</span>
+        <span class="skill-name">Funnel Mapping</span>
+        <span class="skill-tag l4">Initial setup</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Map your complete LinkedIn-to-client journey across 5 stages.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a B2B funnel strategist.
+
+My business model: [SERVICE / PRODUCT / COACHING / CONSULTING]
+My offer price point: [$ AMOUNT OR RANGE]
+My sales process: [DESCRIBE YOUR CURRENT PROCESS]
+My average sales cycle: [DAYS / WEEKS / MONTHS]
+
+Map my complete LinkedIn Growth Funnel with 5 stages:
+
+STAGE 1 - DISCOVERY: How strangers find me
+• Content types + Profile optimization + KPIs
+
+STAGE 2 - INTEREST: How browsers become followers
+• Converting content + Lead magnets + KPIs
+
+STAGE 3 - CONSIDERATION: How followers become leads
+• Education-to-desire content + DM triggers + KPIs
+
+STAGE 4 - INTENT: How leads become call bookings
+• Urgency content + DM scripts + KPIs
+
+STAGE 5 - CONVERSION: How calls become clients
+• Pre-call sequence + Objection-handling + KPIs</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Most creators only optimize top of funnel. Your biggest revenue gains come from fixing Stage 3→4 (lead to call booking).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYER 5 -->
+<div class="layer-section">
+  <div class="layer-header">
+    <div class="layer-dot l5"></div>
+    <div>
+      <div class="layer-title">Layer 5</div>
+      <div class="layer-name">Lead Generation</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card l5">
+      <div class="skill-header">
+        <span class="skill-num">24</span>
+        <span class="skill-name">Prospect Research</span>
+        <span class="skill-tag l5">Daily</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build a targeted list of 50 qualified prospects per week before you ever reach out.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a B2B sales research specialist.
+
+My ICP: [PASTE FROM SKILL #5]
+My offer: [WHAT YOU SELL]
+LinkedIn search filters I'll use: [TITLE / INDUSTRY / COMPANY SIZE / LOCATION]
+
+Help me build my prospect research system:
+1. Ideal LinkedIn search string to find my best prospects
+2. 10 qualification questions to answer before outreach (based on profile, posts, activity)
+3. Trigger events to watch for (signals they need me NOW)
+4. Disqualification red flags (save my time)
+5. A scoring rubric (1-10) to prioritize outreach order
+6. A 5-column prospect tracker template
+   (Name / Company / Trigger / Score / Status)
+
+Goal: Build a list of 50 warm prospects per week.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">The best outreach is almost no outreach — when you've liked, commented, and shared value with someone for weeks, your DM feels like a continuation, not cold contact.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l5">
+      <div class="skill-header">
+        <span class="skill-num">25</span>
+        <span class="skill-name">Engagement Targeting</span>
+        <span class="skill-tag l5">Daily routine</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build a system for warming up prospects through the 4-week engagement ladder.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn relationship-building strategist.
+
+My prospect type: [JOB TITLE / COMPANY TYPE]
+My content expertise: [WHAT TOPICS I CAN ADD VALUE ON]
+My goal: [GET THEM TO DM ME / FOLLOW ME / ACCEPT CONNECTION]
+
+Build my Engagement Targeting System:
+1. The '10-5-3 Rule': How to engage 10 prospects per day efficiently
+   (10 likes, 5 comments, 3 shares per day)
+2. Comment templates for different post types:
+   - When they post a win
+   - When they post a problem/challenge
+   - When they share an opinion
+   - When they ask a question
+3. The 'Engagement Ladder': 4-week sequence
+   Week 1: Like their content
+   Week 2: Comment with value
+   Week 3: Share one of their posts
+   Week 4: Send a personalized DM
+4. How to track engagement activities in a simple CRM</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">After the 4-week ladder, 60%+ of prospects will DM you first. You don't need to cold message anyone.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l5">
+      <div class="skill-header">
+        <span class="skill-num">26</span>
+        <span class="skill-name">DM Frameworks</span>
+        <span class="skill-tag l5">Initial setup</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Write DMs that get replies and start real sales conversations.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a DM conversion specialist for LinkedIn.
+
+My offer: [WHAT YOU SELL]
+My ICP: [WHO I'M MESSAGING]
+My value proposition: [THE TRANSFORMATION I PROVIDE]
+
+Write DM frameworks for each scenario:
+1. CONNECTION REQUEST MESSAGE (300 chars max):
+   Personalized, no pitch, genuine reason to connect
+2. FIRST DM AFTER CONNECTING (warm up):
+   Acknowledge something specific. No ask. Just start a conversation.
+3. VALUE-FIRST DM:
+   Send a relevant resource/insight with zero expectation
+4. SOFT PITCH DM (after 2-3 touchpoints):
+   Light intro of your offer. Invite conversation, not commitment.
+5. DIRECT PITCH DM (hot prospect who showed buying signals):
+   Clear, respectful, specific ask with a soft exit option
+
+Rules: Each DM should be under 100 words. Personalization tokens in [BRACKETS].</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">The #1 DM mistake is sending your pitch in message 1. You wouldn't propose on a first date. Build rapport first — pitch second.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l5">
+      <div class="skill-header">
+        <span class="skill-num">27</span>
+        <span class="skill-name">Follow-Up Systems</span>
+        <span class="skill-tag l5">Initial setup</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Never lose a hot lead because you forgot to follow up.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a sales follow-up specialist.
+
+My offer: [WHAT YOU SELL]
+My sales cycle: [DAYS TO CLOSE TYPICALLY]
+Common objections / ghosting reasons: [WHY PEOPLE GO QUIET]
+
+Build my complete Follow-Up System:
+1. 5-touch follow-up sequence with exact timing:
+   Day 1 / Day 3 / Day 7 / Day 14 / Day 30
+2. Message for each touchpoint (unique, adds new value each time)
+3. The 'breakup message' - final follow-up that re-activates 20% of ghosts
+4. Re-engagement DM for leads who went cold 60-90 days ago
+5. Post-call follow-up sequence (3 messages for no-shows, maybe, yes)
+6. A simple CRM column system to track follow-up stages
+
+The goal: Stay top-of-mind without being annoying.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">80% of sales happen between the 5th and 12th touchpoint. Most people give up after 2. Your follow-up system is where revenue lives.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYER 6 -->
+<div class="layer-section">
+  <div class="layer-header">
+    <div class="layer-dot l6"></div>
+    <div>
+      <div class="layer-title">Layer 6</div>
+      <div class="layer-name">Growth & Optimization</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card l6">
+      <div class="skill-header">
+        <span class="skill-num">28</span>
+        <span class="skill-name">Profile Optimization</span>
+        <span class="skill-tag l6">Setup + Quarterly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Transform your LinkedIn profile from a résumé into a lead-generating landing page.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn profile optimization specialist.
+
+Current headline: [YOUR HEADLINE]
+Current About section: [PASTE YOUR ABOUT]
+My ICP: [WHO VISITS MY PROFILE]
+My offer: [WHAT I WANT THEM TO DO AFTER VISITING]
+
+Audit and rewrite my complete profile:
+1. HEADLINE: 3 high-converting alternatives (keyword + outcome + ICP)
+2. PROFILE PHOTO: Criteria checklist (lighting, background, expression, crop)
+3. BANNER IMAGE: Design brief for a banner that communicates my value
+4. ABOUT SECTION: Full rewrite (hook → story → proof → CTA)
+5. FEATURED SECTION: What to put in all 3 slots and why
+6. EXPERIENCE SECTION: How to reframe job descriptions as value statements
+7. SKILLS & ENDORSEMENTS: Top 10 keywords to include for SEO
+8. ACTIVITY SECTION: Strategy for pinning my best content
+
+Target: When my ICP visits, they should think 'I need to connect with this person.'</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Your LinkedIn profile has one job: turn a profile visitor into a lead or follower. Every section should serve that goal — nothing else.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l6">
+      <div class="skill-header">
+        <span class="skill-num">29</span>
+        <span class="skill-name">Content Audits</span>
+        <span class="skill-tag l6">Monthly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Analyze your last 30 posts and extract the patterns that drive growth.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn content analytics specialist.
+
+Here is data from my last 30 LinkedIn posts:
+[PASTE: Post title / format / impressions / comments / shares / date]
+
+Analyze this data and provide:
+1. Top 5 performing posts - what they have in common (hook style, format, topic, length)
+2. Bottom 5 posts - why they underperformed
+3. Best performing format (text / carousel / video / poll)
+4. Best performing days and times
+5. Topics that consistently outperform others
+6. Hook patterns from viral posts
+7. My 'content DNA' - the unique combination of factors that makes MY content work
+8. 3 specific changes to implement immediately
+
+Give me a clear 'do more of this, stop doing that' summary.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Your analytics tell you exactly what your audience wants. Run this audit monthly and your growth compounds.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l6">
+      <div class="skill-header">
+        <span class="skill-num">30</span>
+        <span class="skill-name">Analytics Review</span>
+        <span class="skill-tag l6">Weekly</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build a simple LinkedIn growth dashboard you actually use every week.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn growth analyst.
+
+My goals for LinkedIn: [BRAND / LEADS / REVENUE / SPEAKING]
+Current metrics (paste what you have): [FOLLOWERS / IMPRESSIONS / ENGAGEMENT]
+My monthly lead target: [NUMBER OF SALES CALLS OR LEADS]
+
+Build my LinkedIn Analytics Dashboard:
+1. The 7 metrics I must track weekly (and why each matters)
+2. The 3 vanity metrics to STOP tracking
+3. Leading indicators (predict future growth) vs lagging indicators (confirm past)
+4. Weekly review ritual: 15-minute process to review and adjust
+5. Monthly scorecard template with benchmarks for my stage
+6. Early warning signals (metrics that indicate I need to change strategy)
+7. A simple formula: Follower Growth → Email Subs → Calls Booked → Revenue
+
+Make this actionable for a non-data-person. Simple and clear.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Track only what you'll act on. If a metric doesn't change what you do next week, stop tracking it.</div>
+      </div>
+    </div>
+
+    <div class="skill-card l6">
+      <div class="skill-header">
+        <span class="skill-num">31</span>
+        <span class="skill-name">Growth Planner</span>
+        <span class="skill-tag l6">Every 90 days</span>
+      </div>
+      <div class="skill-body">
+        <div class="skill-goal">Build your 90-day LinkedIn growth roadmap with weekly milestones.</div>
+        <div class="prompt-label">Claude Prompt</div>
+        <div class="prompt-box" onclick="this.classList.toggle('expanded')">You are a LinkedIn growth strategist and accountability coach.
+
+My current LinkedIn status:
+- Followers: [NUMBER]
+- Weekly impressions: [NUMBER]
+- Weekly DMs received: [NUMBER]
+- Monthly leads from LinkedIn: [NUMBER]
+
+My 90-day goals:
+- Followers: [TARGET]
+- Monthly leads: [TARGET]
+- Revenue attributed to LinkedIn: [TARGET]
+
+Time available for LinkedIn: [HOURS PER WEEK]
+
+Build my 90-Day LinkedIn Growth Plan:
+WEEK 1-2 (Foundation): Profile + positioning + content bank setup
+WEEK 3-4 (Ignition): Daily posting + engagement routine launch
+WEEK 5-8 (Momentum): Lead magnet live + DM outreach begins
+WEEK 9-12 (Scale): Optimize top performers + referral + collaborations
+
+For each week: daily non-negotiables, weekly milestones, success metric.
+Also: my 3 biggest growth risks and mitigation strategies.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+        <div class="tip-box">Most LinkedIn growth fails not from bad strategy but from inconsistency. Protect the daily non-negotiables like meetings with your CEO.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAILY ROUTINE -->
+<div class="routine-section">
+  <div class="routine-title">The 60-Minute Daily Routine</div>
+  <table class="routine-table">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Activity</th>
+        <th>Skill</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="time-badge">0–10 min</span></td>
+        <td>Review analytics from yesterday. What worked? Adjust today's plan.</td>
+        <td><span class="skill-ref">Skill #30</span></td>
+      </tr>
+      <tr>
+        <td><span class="time-badge">10–25 min</span></td>
+        <td>Write or finalize today's post using your weekly content plan.</td>
+        <td><span class="skill-ref">Skills #12, #13</span></td>
+      </tr>
+      <tr>
+        <td><span class="time-badge">25–30 min</span></td>
+        <td>Publish post at optimal time.</td>
+        <td><span class="skill-ref">Skill #18</span></td>
+      </tr>
+      <tr>
+        <td><span class="time-badge">30–45 min</span></td>
+        <td>Engagement: Comment on 10 posts in your niche (ICP + top creators).</td>
+        <td><span class="skill-ref">Skill #17</span></td>
+      </tr>
+      <tr>
+        <td><span class="time-badge">45–55 min</span></td>
+        <td>Prospect research: Add 5–10 new prospects to your tracker.</td>
+        <td><span class="skill-ref">Skill #24</span></td>
+      </tr>
+      <tr>
+        <td><span class="time-badge">55–60 min</span></td>
+        <td>Follow up with 2–3 warm leads in DMs.</td>
+        <td><span class="skill-ref">Skill #27</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  Based on the LinkedIn Growth System — 31 Claude Skills Free Edition<br>
+  <a href="https://calendly.com/niharikaalekharu/30min" target="_blank">Book a free 30-min strategy call →</a>
+</div>
+
+<script>
+function copyPrompt(btn) {
+  const box = btn.previousElementSibling.previousElementSibling;
+  const text = box.innerText.replace('click to expand', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    btn.style.color = '#00e5a0';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.color = '';
+    }, 1800);
+  });
+}
+</script>
+</body>
+</html>
