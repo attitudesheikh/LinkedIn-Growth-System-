@@ -183,7 +183,7 @@ linkedin_claude_instruction_guide.html  ← Full interactive prompt guide
 
 Want help implementing this system? Map out your LinkedIn growth plan, identify your highest-leverage starting point, and get moving fast.
 
-**[Book Your Free 30-Minute Strategy Call](https://calendly.com/niharikaalekharu/30min)**
+**[Book Your Free 30-Minute Strategy Call](https://calendly.com/sheikhassan582/30min)**
 
 ---
 
